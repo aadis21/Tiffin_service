@@ -1,0 +1,77 @@
+{#<div>#}
+{#    <a href="addadmin">Add-Admin</a>#}
+{#    <a href="viewadmin">View-Admin</a>#}
+{##}
+{#    <a href="addarea">Add-Area</a>#}
+{#    <a href="viewarea">View-Area</a>#}
+{##}
+{#    <a href="addmenu">Add-Menu</a>#}
+{#    <a href="viewmenu">View-Menu</a>#}
+{#</div>#}
+<style>
+    .bg-purple {
+        background-color: #6F42C1;
+    }
+    .purple-head {
+        background-color: #6F42C1;
+        color:white;
+    }
+    .purple-btn {
+        background-color: #6F42C1;
+        color:white;
+    }
+</style>
+<nav class="navbar navbar-expand-lg navbar-dark bg-purple">
+    <a class="navbar-brand" href="adminDashboard">Dabba Khol</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            {#            <li class="nav-item active">#}
+            {#                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>#}
+            {#            </li>#}
+            {#            <li class="nav-item">#}
+            {#                <a class="nav-link" href="#">Features</a>#}
+            {#            </li>#}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Manage Admin
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="addadmin">Add Admin</a>
+                    <a class="dropdown-item" href="viewadmin">View Admin</a>
+                    {#                    <a class="dropdown-item" href="#">Something else here</a>#}
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Manage Area
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="addarea">Add Area</a>
+                    <a class="dropdown-item" href="viewarea">View Area</a>
+                    {#                    <a class="dropdown-item" href="#">Something else here</a>#}
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Manage Menu
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="addmenu">Add Menu</a>
+                    <a class="dropdown-item" href="viewmenu">View Menu</a>
+                    {#                    <a class="dropdown-item" href="#">Something else here</a>#}
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="adminlogout">Logout</a>
+            </li>
+
+        </ul>
+    </div>
+</nav>

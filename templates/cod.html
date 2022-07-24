@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>COD</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css"/>
+    <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css"/>
+</head>
+<body>
+    {% include 'userlogin-nav.html' %}
+    <div class="py-5 text-center text-white h-100 align-items-center d-flex" style="
+        width: 100%;
+        height: auto;
+        position: fixed;
+        left: 0;
+        background-image: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.75),
+            rgba(0, 0, 0, 0.75)
+          ),
+          url(https://static.pingendo.com/cover-bubble-dark.svg);
+        background-position: center center, center center;
+        background-size: cover, cover;
+        background-repeat: repeat, repeat;
+      ">
+            <div class="container py-5">
+                <div class="row">
+                    <div class="mx-auto col-lg-8 col-md-10">
+                        <form action="{% url "paymentsuccess" %}" method="post">
+                            <h1 class="display-3 mb-4">Cash On Delivery</h1>
+                            <input type="email" id="email" name="email" value="{{ request.session.user.0.email }}" class="form-control" hidden readonly>
+                            <input type="text" id="houseno" name="houseno" value="{{ request.session.user.0.houseno }}" class="form-control" hidden readonly>
+                            <input type="text" id="area" name="area" value="{{ request.session.user.0.area }}" class="form-control" hidden readonly>
+                            <input type="text" id="bookfor" name="bookfor" value="{{ ar.bookfor }}" class="form-control" hidden readonly>
+                            <input type="text" id="mealtype" name="mealtype" value="{{ ar.mealtype }}" class="form-control" hidden readonly>
+                            <input type="text" id="startdate" name="startdate" value="{{ ar.startdate }}" class="form-control" hidden readonly>
+                            <input type="text" id="billamount" name="billamount" value="{{ ar.billamount }}" class="form-control" hidden readonly>
+                            <button type="submit" class="btn btn-lg btn-primary mx-1">Confirm</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

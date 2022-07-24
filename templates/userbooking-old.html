@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking</title>
+    {% load static %}
+    <link href="{% static "/user/css/bootstrap.css" %}" rel="stylesheet">
+</head>
+<body>
+    {% include "alert.html" %}
+     <div class="container">
+         <h1>Booking</h1>
+        <form action="getarea" method="post">
+        {% csrf_token %}
+            <div class="form-group">
+                <label for="area" name="area-label">Area</label>
+                <input type="text" id="area" name="area" placeholder="Enter area" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-success">
+            </div>
+
+            <div class="form-group">
+                <label for="city" name="city-label">City</label>
+                <input type="text" id="city" name="city" value="{{ request.session.booking.0.city }}" class="form-control" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="state" name="state-label">State</label>
+                <input type="text" id="state" name="state" value="{{ request.session.booking.0.state }}" class="form-control" readonly>
+            </div>
+
+        </form>
+    </div>
+
+    <div class="container">
+        <form action="getmeal" method="post">
+        {% csrf_token %}
+            <div class="form-group">
+                <label for="mealtype" name="mealtype-label">Meal type</label>
+                <select id="mealtype" name="mealtype" class="form-control">
+                     <option value="breakfast">Breakfast</option>
+                     <option value="lunch">Lunch</option>
+                     <option value="dinner">Dinner</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-success">
+            </div>
+
+{#            <div class="form-group">#}
+{#                <input type="text" id="date" name="date" value="{{ request.session.booking.0.date }}" class="form-control" readonly>#}
+{#            </div>#}
+
+            <div class="form-group">
+                <label for="description" name="description-label">Description</label>
+                <input type="text" id="description" name="description" value="{{ request.session.booking.0.description }}" class="form-control" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="price" name="price-label">Price</label>
+                <input type="text" id="price" name="price" value="{{ request.session.booking.0.price }}" class="form-control" readonly>
+            </div>
+
+            <div class="form-group">
+                <a href="checkout">Checkout</a>
+            </div>
+
+        </form>
+    </div>
+</body>
+</html>

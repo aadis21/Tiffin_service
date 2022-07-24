@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Area</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    {% load static %}
+    <link href="{% static "/user/css/bootstrap.css" %}" rel="stylesheet">
+</head>
+<body>
+{% include "adminheader.html" %}
+<div class="container">
+        {% csrf_token %}
+        <h1 class="text-center m-3">Area Details</h1>
+
+        <table class="table table-active">
+            <tr class="purple-head">
+                <th>Area ID</th>
+                <th>Area Name</th>
+                <th>City</th>
+                <th>State</th>
+                <th colspan="2">Options</th>
+            </tr>
+
+            {% for element in ar %}
+                <tr>
+                    <td>{{ element.aid }}</td>
+                    <td>{{ element.areaname }}</td>
+                    <td>{{ element.city }}</td>
+                    <td>{{ element.state }}</td>
+                    <td><a class="btn btn-danger" href="deletearea?selectedvalue={{ element.aid }}">Delete</a> </td>
+                    <td><a class="btn purple-btn" href="editarea?selectedvalue={{ element.aid }}">Edit</a> </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <script src="{% static 'user/js/jquery.min.js' %}"></script>
+    <script src="{% static 'user/js/popper.min.js' %}"></script>
+    <script src="{% static 'user/js/bootstrap.min.js' %}"></script>
+
+</body>
+</html>

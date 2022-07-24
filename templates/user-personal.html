@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+    
+    {% load static %}
+    <link rel="stylesheet" href="{% static "index/css/wireframe.css" %}">
+    <link rel="stylesheet" href="{% static "index/css/styles.css" %}">
+    <link rel="stylesheet" href="{% static "usersignup/css/styles.css" %}" />
+
+    <title>Personal Details</title>
+  </head>
+<body>
+    <!-- Navbar -->
+    {% include 'index-nav.html' %}
+    <!-- Personal details -->
+    <div class="container">
+      <div class="info">
+        
+      </div>
+      <div class="info">
+        Personal Details
+      </div>
+    <div class="form">
+      <div class="thumbnail">
+        <img
+          src="{% static "userlogin/img/hamburger.svg" %}"
+        />
+      </div>
+      <form class="login-form" action="personaldetails" method="post">
+          {% csrf_token %}
+        <input type="email" name="email" id="email" value="{{ email }}" placeholder="Mobile Number" hidden required/>
+        <input type="text" name="mobile" id="mobile" placeholder="Mobile Number" placeholder="Name" pattern="[7-9]{1}[0-9]{9}" title="Please enter valid phone number" required/>
+        <input type="text" name="houseno" id="houseno" placeholder="House Number" required/>
+        <input type="text" name="area" id="area" placeholder="Area" style="margin-bottom: 0" required/>       
+        <p class="message" style="margin: 0; color: #8a867d;">Not sure where we deliver? <a href="{% url 'deliveryareas' %}" class="message" style= "color: black;">Check Our Delivery Areas</a></p>
+        <input type="text" name="city" id="city" placeholder="City" required/>
+        <input type="text" name="state" id="state" value="Punjab" readonly/>
+        <button type="submit">Submit</button>
+
+      </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="{% static "usersignup/js/script.js" %}"></script>
+    </div>
+</body>
+</html>

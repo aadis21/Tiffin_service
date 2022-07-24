@@ -1,0 +1,22 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,900&display=swap');
+
+
+.transparent-bg {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+.bg-black {
+  background-color: #0e0e0e;
+}
+
+.font-thicker {
+	font-weight: 900 !important;
+	
+}
+
+.main-heading{	
+	background-color: black;
+	color: white;
+   }
+

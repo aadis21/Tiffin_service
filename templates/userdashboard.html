@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Dashboard</title>
+        {% load static %}
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+        <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
+        <style>
+            .text-primary {
+	            color: #cdcdcd !important;
+            }
+            .mouse-effect {
+                transition: transform 300ms ease-in;
+            }
+            .mouse-effect:hover {
+                transform: scale(1.01);
+            }
+            .jiggle {
+                animation: jiggle linear 2s infinite;
+                position: relative;
+                animation-delay: 500ms;
+            }
+            @keyframes jiggle {
+                0% {
+                    bottom: 0;
+                }
+                10% {
+                    bottom: 5px;
+                }
+                20% {
+                    bottom: 0;
+                }
+                30% {
+                    bottom: 3px;
+                }
+                40% {
+                    bottom: 0;
+                }
+                100% {
+                    bottom: 0;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        {% include "userlogin-nav.html" %}
+
+        <!--Section 1-->
+        <!--What's cooking-->
+        <div class="py-5 text-white" style="background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(&quot;https://static.pingendo.com/cover-bubble-dark.svg&quot;); background-position: center center, center center; background-size: cover, cover; background-repeat: repeat, repeat;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <h1 class="text-light mb-4">What's cooking<span class="jiggle">?</span></h1>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4 class="" style="font-weight: 700">This week's menu for lunch</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-container" style="display: flex; justify-content: space-between; align-items: stretch; flex-wrap: wrap;">
+                    {% for element in lunch %}
+                    <div class="col-lg-4" style="margin-top: 2rem; color: black;">
+                        <div class="card text-center mx-1 mouse-effect" style="height: 100%;">
+                            <div class="card-body p-4">
+                                <h3 style="font-weight: 400;">{{ element.date }}, {{ element.day }}</h3>
+                                <ul class="my-3 lead" style="list-style: none; padding: 0;">
+                                    {% for item in element.description %}
+                                        <li style="margin-bottom: 0.5rem;">{{ item }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                 <div class="row">
+                    <div class="col-md-12 text-center">
+                        
+                        <div class="row">
+                            <div class="col-md-12" style="margin-top: 4rem;">
+                                <h4 class="" style="font-weight: 700">This week's menu for dinner</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-container" style="display: flex; justify-content: space-between; align-items: stretch; flex-wrap: wrap;">
+                    {% for element in dinner %}
+                    <div class="col-lg-4" style="margin-top: 2rem; color: black;">
+                        <div class="card text-center mx-1 mouse-effect" style="height: 100%;">
+                            <div class="card-body p-4">
+                                <h3 style="font-weight: 400;">{{ element.date }}, {{ element.day }}</h3>
+                                <ul class="my-3 lead" style="list-style: none; padding: 0;">
+                                    {% for item in element.description %}
+                                        <li style="margin-bottom: 0.5rem;">{{ item }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!--Section 2-->
+        <!--Meal Plans-->
+        <div class="py-5 border border-dark shadow" style="
+            background-color: #f2f2f2;
+            background-position: top left;
+            background-size: 100%;
+            background-repeat: repeat;
+          ">
+            <div class="container">
+                <div class="row">
+                    <div class="text-center mx-auto col-md-12">
+                        <h3 class="display-4 text-dark" id="meal-plans" style=""><b>Meal Plans</b></h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 p-3">
+                        <div class="card text-center shadow-lg mouse-effect" style="color: black">
+                            <div class="card-body p-4">
+                                <h3 class=""><b>One Week</b></h3>
+                                <p class="my-3 text-center text-dark" style="">
+                                    We provide service for one week plus delivery charges and a discount of 5% at just
+                                </p>
+                                <h2 class="text-dark">Rs.110 per meal</h2>
+                                <p>Delivery charges - Rs.200 for one week</p>
+                                <p>Exclusive of 5% discount and 5% GST</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 p-3">
+                        <div class="card text-center shadow-lg mouse-effect" style="color: black">
+                            <div class="card-body p-4">
+                                <h3><b>Four Weeks</b></h3>
+                                <p class="my-3 text-center">
+                                    We provide service for four weeks plus delivery chargers and a discount of 10% at just</p>
+                                <h2 class="text-dark">Rs.110 per meal</h2>
+                                <p>Delivery charges - Rs.800 for four weeks</p>
+                                <p>Exclusive of 10% discount and 5% GST</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Section 3-->
+        <!--Contact Details-->
+        {% include 'contact-details.html' %}
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> {# <pingendo onclick="window.open('https://pingendo.com/', '_blank')" style="cursor:pointer;position: fixed;bottom: 20px;right:20px;padding:4px;background-color: #00b0eb;border-radius: 8px; width:220px;display:flex;flex-direction:row;align-items:center;justify-content:center;font-size:14px;color:white">Made with Pingendo Free&nbsp;&nbsp;<img src="https://pingendo.com/site-assets/Pingendo_logo_big.png" class="d-block" alt="Pingendo logo" height="16"></pingendo>#}
+    </body>
+</html>

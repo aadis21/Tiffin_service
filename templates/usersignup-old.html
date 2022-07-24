@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    {% load static %}
+    <link href="{% static "/user/css/bootstrap.css" %}" rel="stylesheet">
+</head>
+<body>
+    {% include "alert.html" %}
+    <div class="container">
+        <form action="signup" method="post">
+            {% include "userheader.html" %}
+            {% csrf_token %}
+            <h1>Sign-Up</h1>
+            <div class="form-group">
+                <label for="email" name="email-label">Email</label>
+                <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password" name="password-label">Password</label>
+                <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password" required>
+            </div>
+
+            <div class="form-group">
+                <label for="mobile" name="mobile-label">Mobile</label>
+                <input type="number" name="mobile" id="mobile" class="form-control" placeholder="Enter your mobile numbergender" required>
+            </div>
+
+            <div class="form-group">
+                <label for="gender" name="gender-label">Gender</label><br>
+                <input type="radio" name="gender" value="male">Male
+                <input type="radio" name="gender" value="female">Female
+                <input type="radio" name="gender" value="others">Others
+            </div>
+
+            <div class="form-group">
+                <label for="address" name="address-label">Adderss</label>
+                <input type="text" name="address" id="" class="form-control" placeholder="Enter your address" required>
+            </div>
+
+            <div class="form-group">
+                <label for="city" name="city-label">City</label>
+                <input type="city" name="city" id="city" class="form-control" placeholder="Enter your city" required>
+            </div>
+
+            <div class="form-group">
+                <label for="state" name="state-label">State</label>
+                <input type="state" name="state" id="state" class="form-control" placeholder="Enter your state" required>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Sign-Up" class="btn btn-success">
+            </div>
+
+        </form>
+    </div>
+    <script src="{% static 'user/js/jquery.min.js' %}"></script>
+    <script src="{% static 'user/js/popper.min.js' %}"></script>
+    <script src="{% static 'user/js/bootstrap.min.js' %}"></script>
+</body>
+</html>

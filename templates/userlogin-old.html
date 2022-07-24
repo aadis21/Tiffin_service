@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    {% load static %}
+    <link href="{% static "/user/css/bootstrap.css" %}" rel="stylesheet">
+</head>
+<body>
+    {% include "alert.html" %}
+    <div class="container">
+        <form action="userlogin" method="post">
+            {% include "userheader.html" %}
+            {% csrf_token %}
+            <h1>Login</h1>
+            <div class="form-group">
+                <label for="email" name="email-label">Email</label>
+                <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password" name="password-label">Password</label>
+                <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password" required>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-success">
+            </div>
+        </form>
+    </div>
+    <script src="{% static 'user/js/jquery.min.js' %}"></script>
+    <script src="{% static 'user/js/popper.min.js' %}"></script>
+    <script src="{% static 'user/js/bootstrap.min.js' %}"></script>
+</body>
+</html>

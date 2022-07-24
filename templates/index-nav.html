@@ -1,0 +1,36 @@
+{% load static %}
+<nav class="navbar navbar-expand-md navbar-dark text-center shadow bg-black fixed-top position-relative" style="background: black; min-height: 70px">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url "index" %}">
+                    {% comment %} <i class="fa d-inline fa-lg fa-bullseye"></i> {% endcomment %}
+                    {% comment %} <img src="{% static 'dabbakhol.png' %}" alt="" width="40" height="35"> {% endcomment %}
+                    Dabba Khol
+                </a>
+                <button type="button" class="navbar-toggler navbar-toggler-right" data-toggle="collapse" data-target="#navbar2SupportedContent" aria-controls="navbar2SupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse text-center justify-content-between" id="navbar2SupportedContent">
+                    <ul class="navbar-nav mx-auto text-white" style="">
+                        <li class="nav-item text-white">
+                            <a class="nav-link mx-2 active" href="{% url "index" %}"><b class="text-white">Home</b></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-2" href="{% url "aboutus" %}"><b class="text-white">About</b></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-2" href="{% url "whyus" %}"><b class="text-white">Why Us</b></a>
+                        </li>
+                        <li class="nav-item" style="box-shadow: 0px 0px 3px black">
+                            <a class="nav-link" href="{% url "howitworks" %}"><b class="text-white"><b >How It Works?</b></b></a>
+                        </li>
+                    </ul>
+                    {% if 'user' in request.session %}
+                        <a href="{% url "userdashboard" %}" class="btn btn-default navbar-btn text-white btn-link">Register</a>
+                        <a href="{% url "userdashboard" %}" class="btn btn-default navbar-btn btn-warning mx-0 ml-0">Log In</a>
+                    {% else %}    
+                        <a href="{% url "usersignup" %}" class="btn btn-default navbar-btn text-white btn-link">Register</a>
+                        <a href="{% url "userlogin" %}" class="btn btn-default navbar-btn btn-warning mx-0 ml-0">Log In</a>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>

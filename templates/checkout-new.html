@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+   <head>
+       <meta charset="utf-8">
+       <title>Confirm Order</title>
+       {% load static %}
+       <meta name="viewport" content="width=device-width, initial-scale=1">
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+       <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
+       <style>
+        input[value="!hidden"]{
+            display:none;
+            }
+       </style>
+  </head>
+
+   <body>
+    {% include 'userlogin-nav.html' %}
+       <div class="py-5 text-center">
+           <div class="container">
+
+               <div class="row">
+                   <div class="mx-auto col-lg-6 col-10 shadow-lg" style="background: white">
+                       <h1 class="p-2">Checkout</h1>
+                       <form class="text-left" action="{% url 'paymentsuccess' %}" method="post">
+
+                           <div class="form-group">
+                               <label for="name">Name</label>
+                               <input type="text" id="name" name="name" value="{{ request.session.user.0.name }}" class="form-control" id="name" readonly>
+                           </div>
+                           <div class="form-group">
+                               <label for="houseno">House Number</label>
+                               <input type="text" name="houseno" value="{{ request.session.user.0.houseno}}" class="form-control" id="houseno" readonly>
+                           </div>
+                           <div class="form-group">
+                               <label for="Area">Area</label>
+                               <input type="text" name="area" value="{{ request.session.user.0.area }}" class="form-control" id="area" readonly>
+                           </div>
+                           <div class="form-row">
+                               <div class="form-group col-md-6">
+                                   <label for="city">City</label>
+                                   <input type="text" name="city" value="{{ request.session.user.0.city}}" class="form-control" id="city" readonly>
+                               </div>
+                               <div class="form-group col-md-6">
+                                   <label for="state">State</label>
+                                   <input type="text" name="state" value="{{ request.session.user.0.state}}" class="form-control" id="state" readonly>
+                               </div>
+                           </div>
+                           <div class="form-row">
+                               <div class="form-group col-md-6">
+                                   <label for="mobile">Mobile</label>
+                                   <input type="text" name="mobile" value="{{ request.session.user.0.mobile }}" class="form-control" id="mobile" readonly>
+                               </div>
+                               <div class="form-group col-md-6">
+                                   <label for="Email">Email</label>
+                                   <input type="email" name="email" value="{{ request.session.user.0.email}}" class="form-control" id="email" readonly>
+                               </div>
+                           </div>
+
+                           <div class="form-row">
+                               <div class="form-group col-md-4">
+                                   <label for="bookfor">Book for</label>
+                                   <input type="text" name="bookfor" value="{{ ar.bookfor|title }}" class="form-control" id="bookfor" readonly>
+                               </div>
+                               <div class="form-group col-md-4">
+                                   <label for="startdate">Start date</label>
+                                   <input type="text" name="startdate" value="{{ ar.startdate }}" class="form-control" id="startdate" readonly>
+                               </div>
+                               <div class="form-group col-md-4">
+                                   <label for="mealtype">Meal type</label>
+                                   <input type="text" name="mealtype" value="{{ ar.mealtype|title }}" class="form-control" id="mealtype" readonly>
+                               </div>
+                           </div>
+
+                           <div class="form-row">
+                                <div class="form-group col-md-6">
+                                   <label for="billamount">Bill Amount</label>
+                                   <input type="text" name="billamount" value="{{ ar.billamount }}" class="form-control" id="billamount" readonly>
+                               </div>
+                               <div class="form-group col-md-6">
+                                   <label for="paymentoption">Payment option</label>
+                                   <input type="text" name="paymentoption" value="{{ ar.paymentoption }}" class="form-control" id="type" readonly>
+                               </div>
+                           </div>
+                           <script
+                                src="https://checkout.razorpay.com/v1/checkout.js"
+                                data-key="rzp_test_CY2r3FNtRbPFhE"
+                                data-amount="{{ ar.billamount }}"
+                                data-currency="INR"
+                                data-order_id="{{ ar.orderid }}"
+                                data-buttontext="!hidden"
+                                data-name="Dabha Khol"
+                                data-description="Food Subscription"
+                                data-image="{% static 'dabbakhol.png' %}"
+                                data-prefill.name="{{ request.session.user.0.name }}"
+                                data-prefill.email="{{ request.session.user.0.email}}"
+                                data-prefill.contact="{{ request.session.user.0.mobile }}"
+                                data-theme.color="#F37254"
+                                
+                            ></script>
+                            
+                            <!-- FIXME: add correct logo -->
+                            <!-- FIXME: form action to success url -->
+                            <!-- FIXME: fix data description -->
+                            <!-- FIXME: make success page -->
+                            <input type="hidden" custom="Hidden Element" name="hidden">
+                            <button class="btn w-25 m-2 mx-auto" type="hidden" custom="Hidden Element" name="hidden" style="background-color: black; color: white;">Proceed to Pay</button>
+                       </form>
+                   </div>
+               </div>
+           </div>
+       </div>
+       {% comment %} <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> {% endcomment %}
+
+    <script src="{% static 'user/js/jquery.min.js' %}"></script>
+    <script src="{% static 'user/js/popper.min.js' %}"></script>
+    <script src="{% static 'user/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'user/js/jquery.validate.min.js' %}"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    </body>
+</html>

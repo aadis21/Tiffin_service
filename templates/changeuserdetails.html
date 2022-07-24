@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% include 'alert.html' %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Change Personal Details</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900"/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+        {% load static %}
+        <link rel="stylesheet" href="{% static "index/css/wireframe.css" %}">
+        <link rel="stylesheet" href="{% static "index/css/styles.css" %}">
+        <link rel="stylesheet" href="{% static "userlogin/css/styles.css" %}" />
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+        <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
+    </head>
+    <body>
+        {% include 'userlogin-nav.html' %}
+        <!-- Login -->
+        <div class="container">
+            <div class="info">
+                Change Personal Details
+            </div>
+            <div class="info">
+
+            </div>
+            <div class="form">
+                <div class="thumbnail">
+                    <img src="{% static "userlogin/img/hamburger.svg" %}"/>
+                </div>
+                <form action="changeuserdetails" method="post" class="login-form">
+                    {% csrf_token %}
+                    <input type="email" name="email" id="email" value="{{ request.session.user.0.email }}" hidden required/>
+                    <input type="text" name="mobile" id="mobile" value="{{ request.session.user.0.mobile }}" required />
+                    <input type="text" name="houseno" id="houseno" value="{{ request.session.user.0.houseno }}" required />
+                    <input type="text" name="area" id="area" value="{{ request.session.user.0.area }}" required/>
+                    <input type="text" name="city" id="city" value="{{ request.session.user.0.city }}" required/>
+                    <input type="text" name="state" id="state" value="{{ request.session.user.0.state }}" readonly/>
+                    <button onclick="alertuser()">Change</button>
+                </form>
+            </div>
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous" style=""></script>
+            <script src="{% static "userlogin/js/script.js" %}"></script>
+            <script>function alertuser(){
+                alert("Details updated successfully.")
+            }</script>
+        </div>
+    </body>
+</html>

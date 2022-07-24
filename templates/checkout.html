@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout</title>
+    {% load static %}
+    <link href="{% static "/user/css/bootstrap.css" %}" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Checkout</h1>
+        <form action="#" method="post" id="processTopay">
+            <div class="form-group">
+                <label for="name" name="name-label">Name</label>
+                <input type="text" id="name" name="name" value="{{ request.session.user.0.name }}" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="email" name="email-label">Email</label>
+                <input type="email" id="email" name="email" value="{{ request.session.user.0.email }}" class="form-control" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="houseno" name="houseno-label">House Number</label>
+                <input type="text" id="houseno" name="houseno" value="{{ request.session.user.0.houseno }}" class="form-control" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="area" name="area-label">Area</label>
+                <input type="text" id="area" name="area" value="{{ request.session.user.0.area }}" class="form-control" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="city" name="city-label">City</label>
+                <input type="text" id="city" name="city" value="{{ request.session.user.0.city }}" class="form-control" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="state" name="state-label">State</label>
+                <input type="text" id="state" name="state" value="{{ request.session.user.0.state }}" class="form-control" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="price" name="price-label">Price</label>
+                <input type="number" id="price" name="price" value="{{ request.session.mealsession.0.price }}" class="form-control" readonly>
+            </div>
+
+            <input type="text" value="{{ request.session.area.0.aid }}" hidden name="aid" id="aid">
+            <input type="text" value="{{ request.session.booking.0.mid }}" hidden name="mid" id="mid">
+
+
+            <div class="form-group">
+                <button class="btn w-25" onclick="dopayment()" type="button" style="background-color: black; color: white">Proceed to Pay</button>
+            </div>
+        </form>
+
+        <script src="{% static 'user/js/jquery.min.js' %}"></script>
+        <script src="{% static 'user/js/popper.min.js' %}"></script>
+        <script src="{% static 'user/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'user/js/jquery.validate.min.js' %}"></script>
+        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+        <script>
+            function dopayment() {
+                if ($('#processTopay').valid()) {
+                    {#console.log({{ grand_total }});#}
+                    var name = document.getElementById("name").value;
+                    var price = document.getElementById('price').value;
+                    var email = document.getElementById('email').value;
+                    var houseno = document.getElementById('houseno').value;
+                    var area = document.getElementById('area').value;
+                    var city = document.getElementById('city').value;
+                    var state = document.getElementById('state').value;
+                    var aid = document.getElementById('aid').value;
+                    var mid = document.getElementById('mid').value;
+                    {#var total = {{ grand_total }}#}
+                    var formdata = new FormData();
+                    formdata.append("name", name);
+                    formdata.append('price', price);
+                    formdata.append('email', email);
+                    formdata.append('houseno', houseno);
+                    formdata.append('area', area);
+                    formdata.append('city', city);
+                    formdata.append('state', state);
+                    {#formdata.append('total', total);#}
+                    formdata.append('aid', aid);
+                    formdata.append('mid', mid);
+                    {#console.log(total);#}
+                    if (type == 'card') {
+                        console.log("Done");
+                        var xml = new XMLHttpRequest();
+                        xml.onreadystatechange = function () {
+                            if (this.readyState == 4 && this.status == 200) {
+                                var ar = JSON.parse(this.response);
+                                console.log(ar);
+                                window.location.href = "thankspage?billid=" + ar['billid'];
+                                {#window.location.href = "thankspage" ;#}
+                            }
+                        };
+                        xml.open('POST', 'payment_action', true);
+                        xml.send(formdata);
+                    } else {
+                        var options = {
+                            "key": "rzp_test_55oiFAfh7L9uFg",
+                            "amount": parseFloat(price) * 100,
+                            "currency": "INR",
+                            "name": "Dabba Khol",
+                            "description": "Test Transaction",
+                            "image": "{% static 'logo.svg' %}",
+
+                            "handler": function (response) {
+                                if (response.razorpay_payment_id == "") {
+                                    {#alert('Failed');#}
+                                    {#window.location.href = "bookingaction?status=failed";#}
+                                } else {
+                                    {#alert('Success');#}
+                                    {#window.location.href = "thankspage?status=success&&gt=" + grandtotal;#}
+
+                                    var xml = new XMLHttpRequest();
+                                    xml.onreadystatechange = function () {
+                                        if (this.readyState == 4 && this.status == 200) {
+                                            var ar = JSON.parse(this.response);
+                                            console.log(ar);
+                                            window.location.href = "thankspage?billid=" + ar['billid'];
+                                            {#window.location.href = "thankspage";#}
+                                        }
+                                    };
+                                    xml.open('POST', 'payment_action', true);
+                                    xml.send(formdata);
+                                }
+                            },
+                            "prefill": {
+                                "name": "",
+                                "email": email,
+                                "contact": "9888598885"
+                            },
+                            "notes": {"address": "Razorpay Corporate Office"},
+                            "theme": {"color": "#F37254"}
+                        };
+                        var rzp1 = new Razorpay(options);
+                        rzp1.open();
+                    }
+                }
+            }
+        </script>
+
+    </div>
+</body>
+</html>

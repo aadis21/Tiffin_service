@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Menu</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    {% load static %}
+    <link href="{% static "/user/css/bootstrap.css" %}" rel="stylesheet">
+</head>
+<body>
+
+{% include "adminheader.html" %}
+<div class="container">
+    <h1 class="text-center m-3">Add Menu</h1>
+    <div>
+        <div class="row">
+            <div class="col-sm-8 offset-sm-2">
+                <div style="background-color: rgba(0, 0, 0, 0.075);padding: 50px; border-radius: 50px">
+                    <form action="addmenu" method="post">
+                        {% csrf_token %}
+{#                        <h1>Add Menu</h1>#}
+
+                        <div class="form-group">
+                            <label for="mealid" name="mealid-label">Meal ID</label>
+                            <input type="text" name="mealid" id="mealid" class="form-control"
+                                   placeholder="Enter meal ID" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mealtype" name="mealtype-label">Meal Type</label>
+                            <select name="mealtype" class="form-control" required>
+                                <option disabled selected>Select meal type</option>
+                                <option>Lunch</option>
+                                <option>Dinner</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="date" name="date-label">date</label>
+                            <input type="date" name="date" id="date" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description" name="description-label">Description</label>
+                            <input type="description" name="description" id="description" class="form-control"
+                                   placeholder="Enter description" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="price" name="price-label">Price</label>
+                            <input type="text" name="price" id="price" class="form-control" placeholder="Enter price"
+                                   required>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" value="Add Meal" class="btn purple-btn w-25">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="{% static 'user/js/jquery.min.js' %}"></script>
+<script src="{% static 'user/js/popper.min.js' %}"></script>
+<script src="{% static 'user/js/bootstrap.min.js' %}"></script>
+</body>
+</html>
